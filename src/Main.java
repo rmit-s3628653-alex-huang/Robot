@@ -31,6 +31,7 @@ public class Main {
 				iterationCount = Character.getNumericValue(nextMove.charAt(1));
 //				System.out.println(iterationCount);
 				switch (nextMove.charAt(0)) {
+				// move forward in current direction for specified iterations
 				case 'f':
 					for (int i = 0; i < iterationCount; i++) {
 						switch (currentDirection) {
@@ -48,6 +49,7 @@ public class Main {
 						}
 					}
 					break;
+				// move backwards in current direction for specified iterations
 				case 'b':
 					for (int i = 0; i < iterationCount; i++) {
 						switch (currentDirection) {
@@ -65,6 +67,7 @@ public class Main {
 						}
 					}
 					break;
+				// right turn 90 degrees for specified iterations
 				case 'r':
 					for (int i = 0; i < iterationCount; i++) {
 						if (currentDirection == directionArray.length - 1) {
@@ -75,6 +78,7 @@ public class Main {
 //						System.out.println(directionArray[currentDirection]);
 					}
 					break;
+				// left turn 90 degrees for specified iterations
 				case 'l':
 					for (int i = 0; i < iterationCount; i++) {
 						if (currentDirection == 0) {
