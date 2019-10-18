@@ -1,4 +1,5 @@
 Instructions
+
 Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 To run via eclipse console:
