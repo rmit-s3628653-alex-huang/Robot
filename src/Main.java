@@ -4,36 +4,47 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main {
-	private static int ORIGIN_X = 0; //origin x and y initalise doesn't change
+	private static int ORIGIN_X = 0; // origin x and y initalise doesn't change
 	private static int ORIGIN_Y = 0;
-	private static int coordX = 0; //current x and y of robot
+	private static int coordX = 0; // current x and y of robot
 	private static int coordY = 0;
 	private static int farFromHome = 0; // initalise how many units from home
-	private static String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; //directional array
+	private static String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
 	private static int currentDirection = 0; // initialise north direction
-	private static int iterationCount = 0; //iteration count based on parasing user input
+	private static int iterationCount = 0; // iteration count based on parasing user input
 
 	static Scanner keyboard = new Scanner(System.in);
+	
+	//ensure each command is valid
+	private static boolean commandValidator(String[] commands) {
+		for (int i=0; i<commands.length; i++) {
+			if (commands[i].length() != 2 || Character.isLetter(commands[i].charAt(0)) == false || Character.isDigit(commands[i].charAt(1)) == false) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
 
 	public static void main(String args[]) {
 		System.out.println("Robo-mover Test");
 		while (true) {
 			System.out.println("enter a list of commands: ");
 			String myMoves = keyboard.next();
-			StringTokenizer token = new StringTokenizer(myMoves, ",");
-			while (token.hasMoreElements()) {
-				String nextMove = token.nextElement().toString();
-				if (nextMove.length() != 2 || Character.isLetter(nextMove.charAt(0)) == false
-						|| Character.isDigit(nextMove.charAt(1)) == false) {
-					System.out.println("invalid entry, please re-enter value");
-					break;
-				}
+//			StringTokenizer token = new StringTokenizer(myMoves, ",");
+			String[] commands = myMoves.split(",");
+			if (commandValidator(commands) == false) {
+				System.out.println("Invalid Entries, Please Re-enter List of Commands");
+				continue;
+			}
+			for (int i=0; i<commands.length; i++) {
+				String nextMove = commands[i];
 				iterationCount = Character.getNumericValue(nextMove.charAt(1));
 //				System.out.println(iterationCount);
 				switch (nextMove.charAt(0)) {
 				// move forward in current direction for specified iterations
 				case 'f':
-					for (int i = 0; i < iterationCount; i++) {
+					for (int j = 0; j < iterationCount; j++) {
 						switch (currentDirection) {
 						case 0:
 							coordY++;
@@ -51,7 +62,7 @@ public class Main {
 					break;
 				// move backwards in current direction for specified iterations
 				case 'b':
-					for (int i = 0; i < iterationCount; i++) {
+					for (int j = 0; j < iterationCount; j++) {
 						switch (currentDirection) {
 						case 0:
 							coordY--;
@@ -69,7 +80,7 @@ public class Main {
 					break;
 				// right turn 90 degrees for specified iterations
 				case 'r':
-					for (int i = 0; i < iterationCount; i++) {
+					for (int j = 0; j < iterationCount; j++) {
 						if (currentDirection == directionArray.length - 1) {
 							currentDirection = 0;
 						} else {
@@ -80,7 +91,7 @@ public class Main {
 					break;
 				// left turn 90 degrees for specified iterations
 				case 'l':
-					for (int i = 0; i < iterationCount; i++) {
+					for (int j = 0; j < iterationCount; j++) {
 						if (currentDirection == 0) {
 							currentDirection = directionArray.length - 1;
 						} else {
@@ -97,7 +108,7 @@ public class Main {
 			}
 			farFromHome = Math.abs(ORIGIN_X - coordX) + Math.abs(ORIGIN_Y - coordY);
 			System.out.printf("Robot is facing %s \n", directionArray[currentDirection]);
-			System.out.printf("Robot is %d units from origin \n",farFromHome);
+			System.out.printf("Robot is %d units from origin \n", farFromHome);
 		}
 	}
 }
