@@ -10,6 +10,8 @@ public class Main {
 	private static int farFromHome = 0; // initalise how many units from home
 	private static String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
 	private static int currentDirection = 0; // initialise north direction
+	private static String commandType; // forward, backward, right or left
+	private static String nextMove; // next move command
 	private static int iterationCount = 0; // iteration count based on parasing user input
 
 	static Scanner keyboard = new Scanner(System.in);
@@ -17,9 +19,13 @@ public class Main {
 	// ensure each command is valid
 	private static boolean commandValidator(String[] commands) {
 		for (int i = 0; i < commands.length; i++) {
-			if (commands[i].length() != 2 || Character.isLetter(commands[i].charAt(0)) == false
-					|| Character.isDigit(commands[i].charAt(1)) == false) {
+			if (commands[i].length() < 2 || Character.isLetter(commands[i].charAt(0)) == false) {
 				return false;
+			}
+			for (int j = 1; j < commands[i].length(); j++) {
+				if (Character.isDigit(commands[i].charAt(j)) == false) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -28,11 +34,12 @@ public class Main {
 
 	private static void runCommands(String[] commands) {
 		for (int i = 0; i < commands.length; i++) {
-			String nextMove = commands[i];
-			iterationCount = Character.getNumericValue(nextMove.charAt(1));
-			switch (nextMove.charAt(0)) {
+			nextMove = commands[i];
+			commandType = nextMove.substring(0, 1);
+			iterationCount = Integer.valueOf(nextMove.substring(1));
+			switch (commandType) {
 			// move forward in current direction for specified iterations
-			case 'f':
+			case "f":
 				for (int j = 0; j < iterationCount; j++) {
 					switch (directionArray[currentDirection]) {
 					case "NORTH":
@@ -51,7 +58,7 @@ public class Main {
 				}
 				break;
 			// move backwards in current direction for specified iterations
-			case 'b':
+			case "b":
 				for (int j = 0; j < iterationCount; j++) {
 					switch (directionArray[currentDirection]) {
 					case "NORTH":
@@ -70,7 +77,7 @@ public class Main {
 				}
 				break;
 			// right turn 90 degrees for specified iterations
-			case 'r':
+			case "r":
 				for (int j = 0; j < iterationCount; j++) {
 					if (currentDirection == directionArray.length - 1) {
 						currentDirection = 0;
@@ -80,7 +87,7 @@ public class Main {
 				}
 				break;
 			// left turn 90 degrees for specified iterations
-			case 'l':
+			case "l":
 				for (int j = 0; j < iterationCount; j++) {
 					if (currentDirection == 0) {
 						currentDirection = directionArray.length - 1;
