@@ -34,17 +34,17 @@ public class Main {
 			// move forward in current direction for specified iterations
 			case 'f':
 				for (int j = 0; j < iterationCount; j++) {
-					switch (currentDirection) {
-					case 0:
+					switch (directionArray[currentDirection]) {
+					case "NORTH":
 						coordY++;
 						break;
-					case 1:
+					case "EAST":
 						coordX++;
 						break;
-					case 2:
+					case "SOUTH":
 						coordY--;
 						break;
-					case 3:
+					case "WEST":
 						coordX--;
 						break;
 					}
@@ -53,17 +53,17 @@ public class Main {
 			// move backwards in current direction for specified iterations
 			case 'b':
 				for (int j = 0; j < iterationCount; j++) {
-					switch (currentDirection) {
-					case 0:
+					switch (directionArray[currentDirection]) {
+					case "NORTH":
 						coordY--;
 						break;
-					case 1:
+					case "EAST":
 						coordX--;
 						break;
-					case 2:
+					case "SOUTH":
 						coordY++;
 						break;
-					case 3:
+					case "WEST":
 						coordX++;
 						break;
 					}
