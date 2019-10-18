@@ -3,8 +3,8 @@
 import java.util.Scanner;
 
 public class Main {
-	private static int ORIGIN_X = 0; // origin x and y initalise doesn't change
-	private static int ORIGIN_Y = 0;
+	private static final int ORIGIN_X = 0; // origin x and y initalise doesn't change
+	private static final int ORIGIN_Y = 0;
 	private static int coordX = 0; // current x and y of robot
 	private static int coordY = 0;
 	private static int farFromHome = 0; // initalise how many units from home
@@ -77,7 +77,6 @@ public class Main {
 					} else {
 						currentDirection++;
 					}
-//					System.out.println(directionArray[currentDirection]);
 				}
 				break;
 			// left turn 90 degrees for specified iterations
@@ -88,7 +87,6 @@ public class Main {
 					} else {
 						currentDirection--;
 					}
-//					System.out.println(directionArray[currentDirection]);
 				}
 				break;
 
@@ -111,6 +109,7 @@ public class Main {
 				continue;
 			}
 			runCommands(commands);
+			System.out.printf("Current robot coordinate is %s,%s \n", coordX, coordY);
 			System.out.printf("Robot is facing %s \n", directionArray[currentDirection]);
 			System.out.printf("Robot is %d units from origin \n", farFromHome);
 		}
