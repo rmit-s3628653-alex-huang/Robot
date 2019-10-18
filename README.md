@@ -3,16 +3,25 @@ Instructions
 Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
 To run via eclipse console:
+
 Download and install: https://www.eclipse.org/downloads/packages/installer
 Clone and import this project.
+
 Browse and click on source, then click run to start project in terminal.
 
+
 To run via command line such as cmd.exe:
+
 Download: https://github.com/rmit-s3628653-alex-huang/Robot/blob/master/src/Main.java
+
 Via command line go to directory with Main.java
+
 run command without parentheses "javac Main.java"
+
 run command without parentheses "javac Main"
+
 If javac/java commands are unable to be run follow this to fix pathing: https://javatutorial.net/set-java-home-windows-10
+
 If command line cannot run commands/write file, try restarting command line as administrator
 
 ## Woven graduate coding test
