@@ -1,7 +1,6 @@
 
 //Coding Pronto Robot by Alex Huang
 import java.util.Scanner;
-import java.util.StringTokenizer;
 
 public class Main {
 	private static int ORIGIN_X = 0; // origin x and y initalise doesn't change
@@ -14,16 +13,91 @@ public class Main {
 	private static int iterationCount = 0; // iteration count based on parasing user input
 
 	static Scanner keyboard = new Scanner(System.in);
-	
-	//ensure each command is valid
+
+	// ensure each command is valid
 	private static boolean commandValidator(String[] commands) {
-		for (int i=0; i<commands.length; i++) {
-			if (commands[i].length() != 2 || Character.isLetter(commands[i].charAt(0)) == false || Character.isDigit(commands[i].charAt(1)) == false) {
+		for (int i = 0; i < commands.length; i++) {
+			if (commands[i].length() != 2 || Character.isLetter(commands[i].charAt(0)) == false
+					|| Character.isDigit(commands[i].charAt(1)) == false) {
 				return false;
 			}
 		}
 		return true;
-		
+
+	}
+
+	private static void runCommands(String[] commands) {
+		for (int i = 0; i < commands.length; i++) {
+			String nextMove = commands[i];
+			iterationCount = Character.getNumericValue(nextMove.charAt(1));
+			switch (nextMove.charAt(0)) {
+			// move forward in current direction for specified iterations
+			case 'f':
+				for (int j = 0; j < iterationCount; j++) {
+					switch (currentDirection) {
+					case 0:
+						coordY++;
+						break;
+					case 1:
+						coordX++;
+						break;
+					case 2:
+						coordY--;
+						break;
+					case 3:
+						coordX--;
+						break;
+					}
+				}
+				break;
+			// move backwards in current direction for specified iterations
+			case 'b':
+				for (int j = 0; j < iterationCount; j++) {
+					switch (currentDirection) {
+					case 0:
+						coordY--;
+						break;
+					case 1:
+						coordX--;
+						break;
+					case 2:
+						coordY++;
+						break;
+					case 3:
+						coordX++;
+						break;
+					}
+				}
+				break;
+			// right turn 90 degrees for specified iterations
+			case 'r':
+				for (int j = 0; j < iterationCount; j++) {
+					if (currentDirection == directionArray.length - 1) {
+						currentDirection = 0;
+					} else {
+						currentDirection++;
+					}
+//					System.out.println(directionArray[currentDirection]);
+				}
+				break;
+			// left turn 90 degrees for specified iterations
+			case 'l':
+				for (int j = 0; j < iterationCount; j++) {
+					if (currentDirection == 0) {
+						currentDirection = directionArray.length - 1;
+					} else {
+						currentDirection--;
+					}
+//					System.out.println(directionArray[currentDirection]);
+				}
+				break;
+
+			default:
+				System.out.println("invalid");
+				break;
+			}
+		}
+		farFromHome = Math.abs(ORIGIN_X - coordX) + Math.abs(ORIGIN_Y - coordY);
 	}
 
 	public static void main(String args[]) {
@@ -31,82 +105,12 @@ public class Main {
 		while (true) {
 			System.out.println("enter a list of commands: ");
 			String myMoves = keyboard.next();
-//			StringTokenizer token = new StringTokenizer(myMoves, ",");
 			String[] commands = myMoves.split(",");
 			if (commandValidator(commands) == false) {
 				System.out.println("Invalid Entries, Please Re-enter List of Commands");
 				continue;
 			}
-			for (int i=0; i<commands.length; i++) {
-				String nextMove = commands[i];
-				iterationCount = Character.getNumericValue(nextMove.charAt(1));
-//				System.out.println(iterationCount);
-				switch (nextMove.charAt(0)) {
-				// move forward in current direction for specified iterations
-				case 'f':
-					for (int j = 0; j < iterationCount; j++) {
-						switch (currentDirection) {
-						case 0:
-							coordY++;
-							break;
-						case 1:
-							coordX++;
-							break;
-						case 2:
-							coordY--;
-						case 3:
-							coordX--;
-							break;
-						}
-					}
-					break;
-				// move backwards in current direction for specified iterations
-				case 'b':
-					for (int j = 0; j < iterationCount; j++) {
-						switch (currentDirection) {
-						case 0:
-							coordY--;
-							break;
-						case 1:
-							coordX--;
-							break;
-						case 2:
-							coordY++;
-						case 3:
-							coordX++;
-							break;
-						}
-					}
-					break;
-				// right turn 90 degrees for specified iterations
-				case 'r':
-					for (int j = 0; j < iterationCount; j++) {
-						if (currentDirection == directionArray.length - 1) {
-							currentDirection = 0;
-						} else {
-							currentDirection++;
-						}
-//						System.out.println(directionArray[currentDirection]);
-					}
-					break;
-				// left turn 90 degrees for specified iterations
-				case 'l':
-					for (int j = 0; j < iterationCount; j++) {
-						if (currentDirection == 0) {
-							currentDirection = directionArray.length - 1;
-						} else {
-							currentDirection--;
-						}
-//						System.out.println(directionArray[currentDirection]);
-					}
-					break;
-
-				default:
-					System.out.println("invalid");
-					break;
-				}
-			}
-			farFromHome = Math.abs(ORIGIN_X - coordX) + Math.abs(ORIGIN_Y - coordY);
+			runCommands(commands);
 			System.out.printf("Robot is facing %s \n", directionArray[currentDirection]);
 			System.out.printf("Robot is %d units from origin \n", farFromHome);
 		}
