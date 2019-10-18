@@ -37,7 +37,7 @@ public class Main {
 			nextMove = commands[i];
 			commandType = nextMove.substring(0, 1);
 			iterationCount = Integer.valueOf(nextMove.substring(1));
-			switch (commandType) {
+			switch (commandType.toLowerCase()) {
 			// move forward in current direction for specified iterations
 			case "f":
 				for (int j = 0; j < iterationCount; j++) {
@@ -96,10 +96,6 @@ public class Main {
 					}
 				}
 				break;
-
-			default:
-				System.out.println("invalid");
-				break;
 			}
 		}
 		farFromHome = Math.abs(ORIGIN_X - coordX) + Math.abs(ORIGIN_Y - coordY);
@@ -108,8 +104,12 @@ public class Main {
 	public static void main(String args[]) {
 		System.out.println("Robo-mover Test");
 		while (true) {
-			System.out.println("enter a list of commands: ");
+			System.out.println("enter a list of commands or e to exit: ");
 			String myMoves = keyboard.next();
+			if(myMoves.toLowerCase().equals("e")) {
+				System.out.println("Program Terminated");
+				break;
+			}
 			String[] commands = myMoves.split(",");
 			if (commandValidator(commands) == false) {
 				System.out.println("Invalid Entries, Please Re-enter List of Commands");
