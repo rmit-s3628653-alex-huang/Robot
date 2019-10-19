@@ -9,16 +9,16 @@ public class Main {
 	private static final String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
 	private static final String[] validCommands = { "f", "b", "r", "l" }; // array of valid commands
 
-	static Scanner keyboard = new Scanner(System.in);
-
 	public static void main(String args[]) {
+		Scanner keyboard = new Scanner(System.in);
 		// separate command line ui and core logic for better modularity
 		System.out.println("Robot Command Line Application for Pronto by Alex Huang");
 		Robot robot1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
 		// continuous loop to add more commands until termination
 		while (true) {
 			System.out.println("Enter a list of commands\n(a letter f (forward), b(backward), l(left 90 degrees), "
-					+ "r(right 90 degrees) followed by the number of times to repeat the command\nexample: f2,r1,l2,b2 )\nor n to start from the origin again or\ne to exit: ");
+					+ "r(right 90 degrees) followed by the number of times to repeat the command (no negative values)"
+					+ "\nexample: f2,r1,l2,b2 )\nor n to restart again or\ne to exit: ");
 			String myMoves = keyboard.next();
 			if (myMoves.toLowerCase().equals("e")) {
 				System.out.println("Program Terminated");
@@ -34,12 +34,20 @@ public class Main {
 				System.out.println("Invalid Entries, Please Re-enter List of Commands");
 				continue;
 			}
-			runCommands(commands, robot1);
+			try {
+				runCommands(commands, robot1);
+			} catch (NumberFormatException n) {
+				System.out.printf("number too large, limit of 10 digits");
+			} catch (Exception e) {
+				System.out.printf("exception caught during run command %s", e.getClass());
+			}
+			
 
 			System.out.printf("Current robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
 			System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
 			System.out.printf("Robot is currently %d units from origin \n", robot1.getUnitsFromHome());
 		}
+		keyboard.close();
 	}
 
 	// ensure each command is valid
