@@ -36,16 +36,17 @@ public class Main {
 			}
 			try {
 				runCommands(commands, robot1);
-			} catch (NumberFormatException n) {
-				System.out.printf("number too large, limit of 10 digits");
+				System.out.printf("Current robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
+				System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
+				System.out.printf("Robot is currently %d units from origin \n", robot1.getUnitsFromHome());
+			} catch (NumberFormatException e) {
+				System.out.printf("over integer limit, please enter a number smaller than 2,147,483,647");
+				e.printStackTrace();
 			} catch (Exception e) {
-				System.out.printf("exception caught during run command %s", e.getClass());
+				System.out.printf(e + " exception caught during run command: " + e.getMessage());
+				e.printStackTrace();
 			}
-			
 
-			System.out.printf("Current robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
-			System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
-			System.out.printf("Robot is currently %d units from origin \n", robot1.getUnitsFromHome());
 		}
 		keyboard.close();
 	}
