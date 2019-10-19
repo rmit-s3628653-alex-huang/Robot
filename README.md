@@ -16,7 +16,7 @@ Download: https://github.com/rmit-s3628653-alex-huang/Robot/blob/master/src/Main
 
 * Via command line go to directory with Main.java
 * run command without parentheses "javac Main.java"
-* run command without parentheses "javac Main"
+* run command without parentheses "java Main"
 * If javac/java commands are unable to be run follow this to fix pathing: https://javatutorial.net/set-java-home-windows-10
 * If command line cannot run commands/write file, try restarting command line as administrator
 
