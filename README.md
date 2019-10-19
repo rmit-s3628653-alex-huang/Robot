@@ -5,15 +5,14 @@ Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java
 ### To run via eclipse console:
 
 * Download and install eclipse for java: https://www.eclipse.org/downloads/packages/installer
-* Clone and import this project @ https://github.com/rmit-s3628653-alex-huang/Robot
+* Clone/download and import this project @ https://github.com/rmit-s3628653-alex-huang/Robot
 * Browse and click on src, then click run to start project in terminal or
 * Click on Main.java to run program in eclipse console.
 * Click on MainTest.java to run junit tests.
 
 ### To run via command line such as cmd.exe:
 
-Download: https://github.com/rmit-s3628653-alex-huang/Robot/blob/master/src/Main.java
-
+* Clone/download and import this project @ https://github.com/rmit-s3628653-alex-huang/Robot
 * Via command line go to directory with source files
 * run command without parentheses "javac Main.java Robot.java"
 * run command without parentheses "java Main"
