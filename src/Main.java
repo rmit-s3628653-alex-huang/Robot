@@ -14,13 +14,38 @@ public class Main {
 
 	static Scanner keyboard = new Scanner(System.in);
 
+	public static void main(String args[]) {
+		// separate command line ui and core logic for better modularity
+		System.out.println("Robo-mover Test");
+		Robot robo1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
+		// continuous loop to add more commands until termination
+		while (true) {
+			System.out.println("enter a list of commands or e to exit: ");
+			String myMoves = keyboard.next();
+			if (myMoves.toLowerCase().equals("e")) {
+				System.out.println("Program Terminated");
+				break;
+			}
+			String[] commands = myMoves.split(",");
+			if (commandValidator(commands) == false) {
+				System.out.println("Invalid Entries, Please Re-enter List of Commands");
+				continue;
+			}
+			runCommands(commands, robo1);
+
+			System.out.printf("Current robot coordinate is %s,%s \n", robo1.getCoordX(), robo1.getCoordY());
+			System.out.printf("Robot is facing %s \n", directionArray[robo1.getCurrentDirection()]);
+			System.out.printf("Robot is %d units from origin \n", robo1.getUnitsFromHome());
+		}
+	}
+
 	// ensure each command is valid
 	public static boolean commandValidator(String[] commands) {
 		for (int i = 0; i < commands.length; i++) {
 			// make sure command is at least two inputs long and that it contains a valid
 			// letter command
-			if (commands[i].length() < 2
-					|| Arrays.asList(validCommands).contains(Character.toString(commands[i].charAt(0))) == false) {
+			if (commands[i].length() < 2 || Arrays.asList(validCommands)
+					.contains(Character.toString(commands[i].charAt(0)).toLowerCase()) == false) {
 				return false;
 			}
 			// make sure all input after the letter command is numeric
@@ -33,7 +58,8 @@ public class Main {
 		return true;
 
 	}
-
+	
+	// run commands list
 	public static void runCommands(String[] commands, Robot robot) {
 		int coordX = robot.getCoordX();
 		int coordY = robot.getCoordY();
@@ -110,27 +136,4 @@ public class Main {
 
 	}
 
-	public static void main(String args[]) {
-		// separate command line ui and core logic for better modularity
-		System.out.println("Robo-mover Test");
-		Robot robo1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
-		while (true) {
-			System.out.println("enter a list of commands or e to exit: ");
-			String myMoves = keyboard.next();
-			if (myMoves.toLowerCase().equals("e")) {
-				System.out.println("Program Terminated");
-				break;
-			}
-			String[] commands = myMoves.split(",");
-			if (commandValidator(commands) == false) {
-				System.out.println("Invalid Entries, Please Re-enter List of Commands");
-				continue;
-			}
-			runCommands(commands, robo1);
-
-			System.out.printf("Current robot coordinate is %s,%s \n", robo1.getCoordX(), robo1.getCoordY());
-			System.out.printf("Robot is facing %s \n", directionArray[robo1.getCurrentDirection()]);
-			System.out.printf("Robot is %d units from origin \n", robo1.getUnitsFromHome());
-		}
-	}
 }
