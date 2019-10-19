@@ -23,8 +23,8 @@ Download: https://github.com/rmit-s3628653-alex-huang/Robot/blob/master/src/Main
 
 ## Design
 
-Created a robot class object to facilitate extensibility (maybe multiple robots running on the same field)
-Separated console printing and input from internal methods to all modularity (replacing the console ui with a proper gui)
+* Created a robot class object to facilitate extensibility (maybe multiple robots running on the same field)
+* Separated console printing and input from internal methods to all modularity (replacing the console ui with a proper gui)
 
 ## Woven graduate coding test
 

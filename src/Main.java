@@ -138,6 +138,7 @@ public class Main {
 		robot.setCoordX(coordX);
 		robot.setCoordY(coordY);
 		robot.setCurrentDirection(direction);
+		// absolute distance calculation to account for negative coordinates
 		robot.setUnitsFromHome(Math.abs(ORIGIN_X - coordX) + Math.abs(ORIGIN_Y - coordY));
 
 	}

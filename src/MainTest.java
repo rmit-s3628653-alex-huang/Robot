@@ -20,6 +20,7 @@ class MainTest {
 	
 	@Test
 	void testRobot() {
+		// test creation of a new robot
 		Robot robo1 = new Robot(0,0,0,0);
 		assertEquals(robo1.getCoordX(),0);
 		assertEquals(robo1.getCoordY(),0);
@@ -29,6 +30,7 @@ class MainTest {
 	
 	@Test
 	void testFull() {
+		// test all parts of application together
 		Robot robo1 = new Robot(0,0,0,0);
 		String[] testArray = {"f2", "r1", "f2", "b4", "l2"};
 		boolean testValid = Main.commandValidator(testArray);
