@@ -1,3 +1,4 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,24 @@ class MainTest {
 		assertEquals(true, testValid);
 		assertEquals(false, testValid2);
 		assertEquals(false, testValid3);
+	}
+	
+	@Test
+	void testRobot() {
+		Robot robo1 = new Robot(0,0,0,0);
+		assertEquals(robo1.getCoordX(),0);
+		assertEquals(robo1.getCoordY(),0);
+		assertEquals(robo1.getCurrentDirection(),0);
+		assertEquals(robo1.getUnitsFromHome(),0);
+	}
+	
+	@Test
+	void testFull() {
+		Robot robo1 = new Robot(0,0,0,0);
+		assertEquals(robo1.getCoordX(),0);
+		assertEquals(robo1.getCoordY(),0);
+		assertEquals(robo1.getCurrentDirection(),0);
+		assertEquals(robo1.getUnitsFromHome(),0);
 	}
 
 }

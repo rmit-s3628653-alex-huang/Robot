@@ -6,11 +6,8 @@ import java.util.Scanner;
 public class Main {
 	private static final int ORIGIN_X = 0; // origin x and y initalise doesn't change
 	private static final int ORIGIN_Y = 0;
-	private static String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
-	private static String[] validCommands = { "f", "b", "r", "l" };
-	private static String commandType; // forward, backward, right or left
-	private static String nextMove; // next move command
-	private static int iterationCount = 0; // iteration count based on parsing user input
+	private static final String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
+	private static final String[] validCommands = { "f", "b", "r", "l" }; // array of valid commands
 
 	static Scanner keyboard = new Scanner(System.in);
 
@@ -64,6 +61,9 @@ public class Main {
 		int coordX = robot.getCoordX();
 		int coordY = robot.getCoordY();
 		int direction = robot.getCurrentDirection();
+		int iterationCount = 0;
+		String nextMove;
+		String commandType;
 		for (int i = 0; i < commands.length; i++) {
 			nextMove = commands[i];
 			commandType = nextMove.substring(0, 1);
