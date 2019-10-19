@@ -13,26 +13,32 @@ public class Main {
 
 	public static void main(String args[]) {
 		// separate command line ui and core logic for better modularity
-		System.out.println("Robo-mover Test");
-		Robot robo1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
+		System.out.println("Robot Command Line Application for Pronto by Alex Huang");
+		Robot robot1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
 		// continuous loop to add more commands until termination
 		while (true) {
-			System.out.println("enter a list of commands or e to exit: ");
+			System.out.println("Enter a list of commands\n(a letter f (forward), b(backward), l(left 90 degrees), "
+					+ "r(right 90 degrees) followed by the number of times to repeat the command\nexample: f2,r1,l2,b2 )\nor n to start from the origin again or\ne to exit: ");
 			String myMoves = keyboard.next();
 			if (myMoves.toLowerCase().equals("e")) {
 				System.out.println("Program Terminated");
 				break;
+			}
+			if (myMoves.toLowerCase().equals("n")) {
+				robot1 = new Robot(0, 0, 0, 0);
+				System.out.println("New Robot Initiated");
+				continue;
 			}
 			String[] commands = myMoves.split(",");
 			if (commandValidator(commands) == false) {
 				System.out.println("Invalid Entries, Please Re-enter List of Commands");
 				continue;
 			}
-			runCommands(commands, robo1);
+			runCommands(commands, robot1);
 
-			System.out.printf("Current robot coordinate is %s,%s \n", robo1.getCoordX(), robo1.getCoordY());
-			System.out.printf("Robot is facing %s \n", directionArray[robo1.getCurrentDirection()]);
-			System.out.printf("Robot is %d units from origin \n", robo1.getUnitsFromHome());
+			System.out.printf("Current robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
+			System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
+			System.out.printf("Robot is currently %d units from origin \n", robot1.getUnitsFromHome());
 		}
 	}
 
@@ -55,7 +61,7 @@ public class Main {
 		return true;
 
 	}
-	
+
 	// run commands list
 	public static void runCommands(String[] commands, Robot robot) {
 		int coordX = robot.getCoordX();
