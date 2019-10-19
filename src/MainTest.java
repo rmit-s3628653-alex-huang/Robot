@@ -30,10 +30,15 @@ class MainTest {
 	@Test
 	void testFull() {
 		Robot robo1 = new Robot(0,0,0,0);
-		assertEquals(robo1.getCoordX(),0);
-		assertEquals(robo1.getCoordY(),0);
-		assertEquals(robo1.getCurrentDirection(),0);
-		assertEquals(robo1.getUnitsFromHome(),0);
+		String[] testArray = {"f2", "r1", "f2", "b4", "l2"};
+		boolean testValid = Main.commandValidator(testArray);
+		assertEquals(true, testValid);
+		Main.runCommands(testArray,robo1);
+		// test coordinates, units from origin and direction should be -2,2 4 units from home, facing 3 (aka west)
+		assertEquals(robo1.getCoordX(), -2);
+		assertEquals(robo1.getCoordY(), 2);
+		assertEquals(robo1.getUnitsFromHome(), 4);
+		assertEquals(robo1.getCurrentDirection(), 3);
 	}
 
 }
