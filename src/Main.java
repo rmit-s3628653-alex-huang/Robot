@@ -7,7 +7,7 @@ public class Main {
 	private static final int ORIGIN_X = 0; // origin x and y initalise doesn't change
 	private static final int ORIGIN_Y = 0;
 	private static final String[] directionArray = { "NORTH", "EAST", "SOUTH", "WEST" }; // directional array
-	private static final String[] validCommands = { "f", "b", "r", "l" }; // array of valid commands
+	private static final String[] validCommands = { "F", "B", "R", "L" }; // array of valid commands
 
 	public static void main(String args[]) {
 		Scanner keyboard = new Scanner(System.in);
@@ -16,15 +16,21 @@ public class Main {
 		Robot robot1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
 		// continuous loop to add more commands until termination
 		while (true) {
-			System.out.println("Enter a list of commands\n(a letter f (forward), b(backward), l(left 90 degrees), "
-					+ "r(right 90 degrees) followed by the number of times to repeat the command (no negative values)"
-					+ "\nexample: f2,r1,l2,b2 )\nor n to restart again or\ne to exit: ");
-			String myMoves = keyboard.next();
-			if (myMoves.toLowerCase().equals("e")) {
-				System.out.println("Program Terminated");
-				break;
+			System.out.println("Enter a list of commands\n(a letter F (forward), B(backward), L(left 90 degrees), "
+					+ "R(right 90 degrees) followed by the number of times to repeat the command (no negative values)"
+					+ "\nexample: f2,r1,l2,b2 )\nor N to reset robot to origin point or\nE to exit: ");
+			String myMoves = keyboard.nextLine();
+			if (myMoves.toUpperCase().equals("E")) {
+				System.out.println("Enter Y to confirm termination or another letter to stay: ");
+				if (keyboard.nextLine().toUpperCase().equals("Y")) {
+					System.out.println("Program Terminated");
+					break;
+				}
+				else {
+					continue;
+				}
 			}
-			if (myMoves.toLowerCase().equals("n")) {
+			if (myMoves.toUpperCase().equals("N")) {
 				robot1 = new Robot(0, 0, 0, 0);
 				System.out.println("New Robot Initiated");
 				continue;
@@ -36,15 +42,13 @@ public class Main {
 			}
 			try {
 				runCommands(commands, robot1);
-				System.out.printf("Current robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
+				System.out.printf("\nCurrent robot coordinate is %s,%s \n", robot1.getCoordX(), robot1.getCoordY());
 				System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
-				System.out.printf("Robot is currently %d units from origin \n", robot1.getUnitsFromHome());
+				System.out.printf("Robot is currently %d units from origin \n\n", robot1.getUnitsFromHome());
 			} catch (NumberFormatException e) {
-				System.out.printf("over integer limit, please enter a number smaller than 2,147,483,647");
-				e.printStackTrace();
+				System.out.printf("Over integer limit, please enter a number smaller than 2,147,483,647");
 			} catch (Exception e) {
 				System.out.printf(e + " exception caught during run command: " + e.getMessage());
-				e.printStackTrace();
 			}
 
 		}
@@ -57,7 +61,7 @@ public class Main {
 			// make sure command is at least two inputs long and that it contains a valid
 			// letter command
 			if (commands[i].length() < 2 || Arrays.asList(validCommands)
-					.contains(Character.toString(commands[i].charAt(0)).toLowerCase()) == false) {
+					.contains(Character.toString(commands[i].charAt(0)).toUpperCase()) == false) {
 				return false;
 			}
 			// make sure all input after the letter command is numeric
@@ -83,9 +87,9 @@ public class Main {
 			nextMove = commands[i];
 			commandType = nextMove.substring(0, 1);
 			iterationCount = Integer.valueOf(nextMove.substring(1));
-			switch (commandType.toLowerCase()) {
+			switch (commandType.toUpperCase()) {
 			// move forward in current direction for specified iterations
-			case "f":
+			case "F":
 				for (int j = 0; j < iterationCount; j++) {
 					switch (directionArray[direction]) {
 					case "NORTH":
@@ -104,7 +108,7 @@ public class Main {
 				}
 				break;
 			// move backwards in current direction for specified iterations
-			case "b":
+			case "B":
 				for (int j = 0; j < iterationCount; j++) {
 					switch (directionArray[direction]) {
 					case "NORTH":
@@ -123,7 +127,7 @@ public class Main {
 				}
 				break;
 			// right turn 90 degrees for specified iterations
-			case "r":
+			case "R":
 				for (int j = 0; j < iterationCount; j++) {
 					if (direction == directionArray.length - 1) {
 						direction = 0;
@@ -133,7 +137,7 @@ public class Main {
 				}
 				break;
 			// left turn 90 degrees for specified iterations
-			case "l":
+			case "L":
 				for (int j = 0; j < iterationCount; j++) {
 					if (direction == 0) {
 						direction = directionArray.length - 1;

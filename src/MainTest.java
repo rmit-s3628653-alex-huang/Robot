@@ -7,18 +7,24 @@ class MainTest {
 
 	@Test
 	void testValidator() {
-		String[] testArray = { "f1", "f2", "r1", "l1", "f4", "b4" }; // valid set of inputs
+		String[] arrayValid = { "f1", "f2", "r1", "l1", "f4", "b4" }; // valid set of inputs
 		String[] testArray2 = { "e1", "f2" }; // invalid input - invalid letter
-		String[] testArray3 = { "e1", "f2" }; // invalid input - invalid length
-		String[] testArray4 = { "e1", "f-2" }; // invalid input - invalid length
-		boolean testValid = Main.commandValidator(testArray);
-		boolean testValid2 = Main.commandValidator(testArray2);
-		boolean testValid3 = Main.commandValidator(testArray3);
-		boolean testValid4 = Main.commandValidator(testArray4);
+		String[] arrayLength = { "e1", "f2" }; // invalid input - invalid length
+		String[] arrayNegative = { "e1", "f-2" }; // invalid input - negative input
+		String[] arrayNumber = { "e1", "22" }; // invalid input - numbers input only
+		String[] arrayDecimal = { "e1", "e2.2" }; // invalid input - numbers input only
+		boolean testValid = Main.commandValidator(arrayValid);
+		boolean testLetter = Main.commandValidator(testArray2);
+		boolean testLength = Main.commandValidator(arrayLength);
+		boolean testNegative = Main.commandValidator(arrayNegative);
+		boolean testNumber = Main.commandValidator(arrayNumber);
+		boolean testDecimal = Main.commandValidator(arrayDecimal);
 		assertEquals(true, testValid);
-		assertEquals(false, testValid2);
-		assertEquals(false, testValid3);
-		assertEquals(false, testValid4);
+		assertEquals(false, testLetter);
+		assertEquals(false, testLength);
+		assertEquals(false, testNegative);
+		assertEquals(false, testNumber);
+		assertEquals(false, testDecimal);
 	}
 
 	@Test
