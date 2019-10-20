@@ -28,12 +28,14 @@ Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java
 
 ## Design Explanations
 
+* Command Line application which takes in keyboard input and allows the user to continue to enter new commands from the point where the robot has arrived or restart at the origin, for better usability.
+* Allows termination in-program (which also includes a exit confirmation so the user doesn't accidentally close the application) instead of having to close the window or force close, for cleaner interaction.
 * Created a robot class object to facilitate extensibility (maybe multiple robots running on the same field).
 * Separated console printing and input from internal methods to allow better modularity (such as replacing the console ui with a proper gui in the future).
 * Junit for easy regression testing if more features are to be added.
-
-
-
+*
+*
+*
 ## Woven graduate coding test
 
 Your task is to write a CLI application to parse commands and display the result.
