@@ -4,7 +4,7 @@ Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java
 
 ### To run jar file via command line:
 
-* Download Robot.zip release
+* Download Robot.zip release @ https://github.com/rmit-s3628653-alex-huang/Robot/releases
 * Unzip Robot.zip
 * Run RunRobot.bat
 
