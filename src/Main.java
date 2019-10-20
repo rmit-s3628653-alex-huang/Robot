@@ -12,13 +12,15 @@ public class Main {
 	public static void main(String args[]) {
 		Scanner keyboard = new Scanner(System.in);
 		// separate command line ui and core logic for better modularity
-		System.out.println("Robot Command Line Application for Pronto by Alex Huang v1.0");
+		System.out.println("Robot Command Line Application for Pronto by Alex Huang v1.1");
 		Robot robot1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
 		// continuous loop to add more commands until termination
 		while (true) {
 			System.out.println("Enter a list of commands\n(a letter F (forward), B(backward), L(left 90 degrees), "
 					+ "R(right 90 degrees) followed by the number of times to repeat the command (no negative values)"
-					+ "\nexample: f2,r1,l2,b2 )\nor N to reset robot to origin point or\nE to exit: ");
+					+ "\nexample: F1,R1,B2,L1,B3 )\nor N to reset robot to origin point\nor E to exit\n"
+					+ "Current Position of robot is: " + robot1.getCoordX() + "," + robot1.getCoordY() + " Facing: "
+					+ directionArray[robot1.getCurrentDirection()] + "\nEnter commands: ");
 			String myMoves = keyboard.nextLine();
 			if (myMoves.toUpperCase().equals("E")) {
 				System.out.println("Enter Y to confirm termination or another letter to stay: ");
@@ -45,7 +47,7 @@ public class Main {
 				System.out.printf("Robot is currently facing %s \n", directionArray[robot1.getCurrentDirection()]);
 				System.out.printf("Robot is currently %d units from origin \n\n", robot1.getUnitsFromHome());
 			} catch (NumberFormatException e) {
-				System.out.printf("Over integer limit, please enter a number smaller than 2,147,483,647");
+				System.out.printf("Over integer limit, please enter a number smaller than 2,147,483,647\n");
 			} catch (Exception e) {
 				System.out.printf(e + " exception caught during run command: " + e.getMessage());
 			}
