@@ -12,7 +12,7 @@ public class Main {
 	public static void main(String args[]) {
 		Scanner keyboard = new Scanner(System.in);
 		// separate command line ui and core logic for better modularity
-		System.out.println("Robot Command Line Application for Pronto by Alex Huang");
+		System.out.println("Robot Command Line Application for Pronto by Alex Huang v1.0");
 		Robot robot1 = new Robot(0, 0, 0, 0); // initialise robot at origin facing north
 		// continuous loop to add more commands until termination
 		while (true) {
@@ -25,8 +25,7 @@ public class Main {
 				if (keyboard.nextLine().toUpperCase().equals("Y")) {
 					System.out.println("Program Terminated");
 					break;
-				}
-				else {
+				} else {
 					continue;
 				}
 			}
