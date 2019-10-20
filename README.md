@@ -2,6 +2,12 @@
 
 Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java/javase/downloads/index.html
 
+### To run jar file via command line:
+
+* Download Robot.zip release
+* Unzip Robot.zip
+* Run RunRobot.bat
+
 ### To run via eclipse console:
 
 * Download and install eclipse for java: https://www.eclipse.org/downloads/packages/installer
