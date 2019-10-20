@@ -26,11 +26,13 @@ Make sure you have JDK or JRE installed: https://www.oracle.com/technetwork/java
 * If command line cannot run commands/write file, try restarting command line as administrator
 
 
-## Design
+## Design Explanations
 
 * Created a robot class object to facilitate extensibility (maybe multiple robots running on the same field).
-* Separated console printing and input from internal methods to all modularity (replacing the console ui with a proper gui).
+* Separated console printing and input from internal methods to allow better modularity (replacing the console ui with a proper gui).
 * Junit for easy regression testing if more features are to be added.
+
+
 
 ## Woven graduate coding test
 
